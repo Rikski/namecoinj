@@ -3498,6 +3498,7 @@ public class Wallet extends BaseTaggableObject implements Serializable, BlockCha
             // transaction lists more appropriately, especially when the wallet starts to generate transactions itself
             // for internal purposes.
             req.tx.setPurpose(Transaction.Purpose.USER_PAYMENT);
+            req.tx.setRefHeight(getLastBlockSeenHeight());
             // Record the exchange rate that was valid when the transaction was completed.
             req.tx.setExchangeRate(req.exchangeRate);
             req.tx.setMemo(req.memo);
