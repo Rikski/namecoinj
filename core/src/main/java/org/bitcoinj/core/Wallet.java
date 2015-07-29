@@ -3378,6 +3378,19 @@ public class Wallet extends BaseTaggableObject implements Serializable, BlockCha
                 value = value.add(output.getValue());
             }
 
+            // Calculate the demurrage fee
+            int height = getLastBlockSeenHeight();
+            BigInteger fee = BigInteger.ZERO;
+      
+            for (Transaction tx : unspent.values()) { 
+                int oldheight = (int)tx.getRefHeight();
+                BigDecimal val = (new BigDecimal(tx.getValueSentToMe(this))).movePointLeft(8);
+                fee = fee.add(Transaction.getDemurrageInSatoshi(oldheight-2,height,val));
+            }  
+            Transaction.REFERENCE_DEFAULT_MIN_TX_FEE = fee;
+            req.DEFAULT_FEE_PER_KB = fee;
+            req.feePerKb = fee;
+
             log.info("Completing send tx with {} outputs totalling {} (not including fees)",
                     req.tx.getOutputs().size(), value.toFriendlyString());
 
