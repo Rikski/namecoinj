@@ -243,6 +243,7 @@ message Transaction {
 
   optional uint32 lock_time = 4; // The nLockTime field is useful for contracts.
   optional int64 updated_at = 5; // millis since epoch the transaction was last updated
+  optional uint32 ref_height = 12;
 
   repeated TransactionInput transaction_input = 6;
   repeated TransactionOutput transaction_output = 7;
