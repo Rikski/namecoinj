@@ -37,7 +37,7 @@ public class BlockMergeMined {
     public static final long MERGED_MINE_START_TIME = 0;
     public static final long BLOCK_VERSION_AUXPOW = (1 << 8);
     public static final long BLOCK_VERSION_CHAIN_START = (1 << 16);
-    public static final long MERGED_MINE_CHAIN_ID = 0x0001;
+    public static final long MERGED_MINE_CHAIN_ID = 0x0011;
     public static final byte pchMergedMiningHeader[] = { (byte)0xfa, (byte)0xbe, 'm', 'm' } ;
     // Fields defined as part of the protocol format.
     // modifiers
