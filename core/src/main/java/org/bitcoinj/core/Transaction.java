@@ -111,6 +111,7 @@ public class Transaction extends ChildMessage implements Serializable {
     private ArrayList<TransactionOutput> outputs;
 
     private long lockTime;
+    private long refHeight;
 
     // This is either the time the transaction was broadcast as measured from the local clock, or the time from the
     // block in which it was included. Note that this can be changed by re-orgs so the wallet may update this field.
@@ -547,7 +548,7 @@ public class Transaction extends ChildMessage implements Serializable {
             cursor += scriptLen + varint.getOriginalSizeInBytes();
         }
         // 4 = length of lock_time field (uint32)
-        return cursor - offset + 4;
+        return cursor - offset + 4 + 4;
     }
 
     @Override
@@ -585,6 +586,8 @@ public class Transaction extends ChildMessage implements Serializable {
         }
         lockTime = readUint32();
         optimalEncodingMessageSize += 4;
+        refHeight = readUint32();
+        optimalEncodingMessageSize += 4 + 4;
         length = cursor - offset;
     }
 
@@ -1048,6 +1051,7 @@ public class Transaction extends ChildMessage implements Serializable {
         for (TransactionOutput out : outputs)
             out.bitcoinSerialize(stream);
         uint32ToByteStreamLE(lockTime, stream);
+        uint32ToByteStreamLE(refHeight, stream);
     }
 
 
@@ -1072,6 +1076,18 @@ public class Transaction extends ChildMessage implements Serializable {
         unCache();
         // TODO: Consider checking that at least one input has a non-final sequence number.
         this.lockTime = lockTime;
+    }
+
+    /** returns reference height **/
+    public long getRefHeight() {
+        maybeParse();
+        return refHeight;
+    }
+
+    /** sets reference height **/
+    public void setRefHeight(long refHeight) {
+        unCache();
+        this.refHeight = refHeight;
     }
 
     /**
