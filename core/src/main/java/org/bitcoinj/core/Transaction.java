@@ -117,7 +117,7 @@ public class Transaction extends ChildMessage implements Serializable {
      * Currently this is 1000 satoshis.
      */
 
-    public static final Coin REFERENCE_DEFAULT_MIN_TX_FEE = CoinDefinition.DEFAULT_MIN_TX_FEE;
+    public static Coin REFERENCE_DEFAULT_MIN_TX_FEE = CoinDefinition.DEFAULT_MIN_TX_FEE;
 
 
     /**
