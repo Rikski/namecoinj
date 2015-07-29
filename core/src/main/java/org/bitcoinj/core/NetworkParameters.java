@@ -110,24 +110,101 @@ public abstract class NetworkParameters implements Serializable {
             //   coin dependent
             byte[] bytes = Hex.decode(CoinDefinition.genesisTxInBytes);
             //byte[] bytes = Hex.decode("04ffff001d0104294469676974616c636f696e2c20412043757272656e637920666f722061204469676974616c20416765");
+            t.setRefHeight(0);
             t.addInput(new TransactionInput(n, t, bytes));
             ByteArrayOutputStream scriptPubKeyBytes = new ByteArrayOutputStream();
-            Script.writeBytes(scriptPubKeyBytes, Hex.decode(CoinDefinition.genesisTxOutBytes));
-                    //("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"));
+            //Adding Worldleadcurrency genesisblock
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Coin.valueOf(CoinDefinition.genesisBlockValue, 0), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("254.53671561"), scriptPubKeyBytes.toByteArray()));
+
+            scriptPubKeyBytes.reset();
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("5029d180e0c5ed798d877b1ada99772986c1422ca932c41b2d04000000000000"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            Script.writeBytes(scriptPubKeyBytes,new byte[] {(byte) 0}); 
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+
+            scriptPubKeyBytes.reset();
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("202020"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("4d6574616c73207765726520616e20696d706c696369746c7920616275736976652061677265656d656e742e0a4d6f6465726e2022706170657222206973206120666c6177656420746f6f6c2c2069747320656e67696e656572696e672069732061206e657374206f66206c6565636865732e0a546865206f6c64206d6f6e6579206973206f62736f6c6574652e0a4c65742074686520696e646976696475616c206d6f6e6574697a65206974732063726564697420776974686f75742063617274656c20696e7465726d65646961726965732e0a4769766520757320612072656e742d6c657373206361736820736f2077652063616e206265206672656520666f72207468652066697273742074696d652e0a4c65742074686973206265207468652061776169746564206461776e2e"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DUP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_HASH160);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("0ef0f9d19a653023554146a866238b8822bc84df"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+
+            scriptPubKeyBytes.reset();
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("2020202020202020"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("224c65742075732063616c63756c6174652c20776974686f757420667572746865722061646f2c20696e206f7264657220746f207365652077686f2069732072696768742e22202d2d476f747466726965642057696c68656c6d204c6569626e697a0acebec2b4efbda5e28880efbda560efbc89e38080e38080e38080e3808020206e0aefbfa3e38080e38080e380802020efbcbce38080e380802020efbc882045efbc8920676f6f64206a6f622c206d61616b75210aefbe8ce38080e38080e3808020202fe383bd20e383bd5fefbc8fefbc8f"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DUP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_HASH160);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("c26be5ec809aa4bf6b30aa89823cff7cedc3679a"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+
+            scriptPubKeyBytes.reset();
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("202020202020"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("4963682077c3bc6e7363686520574c43207669656c204572666f6c67207a756d204e75747a656e206465722039392050726f7a656e7421"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DUP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_HASH160);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("2939acd60037281a708eb11e4e9eda452c029eca"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+
+            scriptPubKeyBytes.reset();
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("20202020202020202020202020"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("225468652076616c7565206f662061206d616e2073686f756c64206265207365656e20696e207768617420686520676976657320616e64206e6f7420696e20776861742068652069732061626c6520746f20726563656976652e22202d2d416c626572742045696e737465696e"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DUP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_HASH160);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("f9ca5caab4bda4dc28b5556aa79a2eec0447f0bf"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+
+            scriptPubKeyBytes.reset();
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("20202020202020202020202020"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("22416e2061726d79206f66207072696e6369706c65732063616e2070656e65747261746520776865726520616e2061726d79206f6620736f6c64696572732063616e6e6f742e22202d2d54686f6d6173205061696e65"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DUP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_HASH160);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("08f320cbb41a1ae25b794f6175f96080681989f3"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+
+            scriptPubKeyBytes.reset();
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_DUP);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_HASH160);
+            Script.writeBytes(scriptPubKeyBytes, Hex.decode("85e54144c4020a65fa0a8fdbac8bba75dbc2fd00"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
+            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("496.03174604"), scriptPubKeyBytes.toByteArray())); 
+
         } catch (Exception e) {
             // Cannot happen.
             throw new RuntimeException(e);
         }
         genesisBlock.addTransaction(t);
+        genesisBlock.setMerkleRoot(new Sha256Hash("e399be31d62cef5791bd0f944e3a291fb4b22cf5c6528835ce60922977722785"));
         return genesisBlock;
     }
 
 
 
 
-    public static final int TARGET_TIMESPAN = CoinDefinition.TARGET_TIMESPAN;//14 * 24 * 60 * 60;  // 2 weeks per difficulty cycle, on average.
+    public static final int TARGET_TIMESPAN = CoinDefinition.TARGET_TIMESPAN;//128 * 60;  // 2 weeks per difficulty cycle, on average.
     public static final int TARGET_SPACING = CoinDefinition.TARGET_SPACING;// 10 * 60;  // 10 minutes per block.
     public static final int INTERVAL = CoinDefinition.INTERVAL;//TARGET_TIMESPAN / TARGET_SPACING;
     
