@@ -230,6 +230,7 @@ public class WalletProtobufSerializer {
         txBuilder.setPool(getProtoPool(wtx))
                  .setHash(hashToByteString(tx.getHash()))
                  .setVersion((int) tx.getVersion());
+                 .setRefHeight((int)tx.getRefHeight());
 
         if (tx.getUpdateTime() != null) {
             txBuilder.setUpdatedAt(tx.getUpdateTime().getTime());
@@ -594,6 +595,9 @@ public class WalletProtobufSerializer {
             // Old wallet: assume a user payment as that's the only reason a new tx would have been created back then.
             tx.setPurpose(Transaction.Purpose.USER_PAYMENT);
         }
+        
+       // set reference height
+       tx.setRefHeight(txProto.getRefHeight());
 
         if (txProto.hasExchangeRate()) {
             Protos.ExchangeRate exchangeRateProto = txProto.getExchangeRate();
