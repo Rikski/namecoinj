@@ -77,7 +77,7 @@ public class CoinDefinition {
 
 
     public static final Coin DEFAULT_MIN_TX_FEE = Coin.valueOf(1000);   // MIN_TX_FEE
-    public static final Coin DUST_LIMIT = Coin.valueOf(1000000); //main.h CTransaction::GetMinFee        0.01 coins
+    public static final Coin DUST_LIMIT = Coin.valueOf(100); //main.h CTransaction::GetMinFee        0.01 coins
 
     public static final int PROTOCOL_VERSION = 70001;          //version.h PROTOCOL_VERSION
     public static final int MIN_PROTOCOL_VERSION = 60002;        //version.h MIN_PROTO_VERSION
