@@ -15356,7 +15356,7 @@ public final class Protos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeUInt32(12, lastSeenBlockHeight_);
       }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeUInt64(13, keyRotationTime_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
@@ -15731,7 +15731,7 @@ public final class Protos {
           result.extension_ = extensionBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
-          to_bitField0_ |= 0x00000200;
+          to_bitField0_ |= 0x00000080;
         }
         result.description_ = description_;
         if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
