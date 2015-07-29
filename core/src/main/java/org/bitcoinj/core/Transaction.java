@@ -32,6 +32,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
 import java.io.*;
+import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -79,6 +81,28 @@ public class Transaction extends ChildMessage implements Serializable {
             return heightComparison != 0 ? heightComparison : tx1.getHash().compareTo(tx2.getHash());            
         }
     };
+
+    /** Calculate demurrage in decimal **/
+    public static BigDecimal getDemurrage(int old_height, int new_height, BigDecimal value) {
+        BigDecimal fee;
+
+        fee = new BigDecimal(0.99999904632568359375); // 1 - 2^(-20)
+        fee = fee.pow(new_height-old_height);
+        fee = fee.multiply(value);
+        fee = value.subtract(fee);
+    
+        return fee;
+    }
+    
+    /** Calculate demurrage in satoshi **/
+    public static BigInteger getDemurrageInSatoshi(int old_height, int new_height, BigDecimal value) {
+        BigInteger fee;
+
+        fee = getDemurrage(old_height, new_height, value).setScale(8, BigDecimal.ROUND_HALF_UP).movePointRight(8).toBigIntegerExact();
+
+        return fee;    
+    }
+  
     private static final Logger log = LoggerFactory.getLogger(Transaction.class);
     private static final long serialVersionUID = -8567546957352643140L;
 
@@ -178,7 +202,7 @@ public class Transaction extends ChildMessage implements Serializable {
 
     public Transaction(NetworkParameters params) {
         super(params);
-        version = 1;
+        version = 2;
         inputs = new ArrayList<TransactionInput>();
         outputs = new ArrayList<TransactionOutput>();
         // We don't initialize appearsIn deliberately as it's only useful for transactions stored in the wallet.
