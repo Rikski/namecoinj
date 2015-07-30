@@ -92,7 +92,7 @@ public class CoinDefinition {
         return PROTOCOL_VERSION <= 70000;
     }
 
-    public static final int Port    = 55889       //protocol.h GetDefaultPort(testnet=false)
+    public static final int Port    = 55889;       //protocol.h GetDefaultPort(testnet=false)
     public static final int TestPort = 45889;     //protocol.h GetDefaultPort(testnet=true)
 
     //
