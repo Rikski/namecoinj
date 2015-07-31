@@ -19108,7 +19108,7 @@ public final class Protos {
       "ansaction\022\017\n\007version\030\001 \002(\005\022\014\n\004hash\030\002 \002(\014" +
       "\022&\n\004pool\030\003 \001(\0162\030.wallet.Transaction.Pool" +
       "\022\021\n\tlock_time\030\004 \001(\r\022\022\n\nupdated_at\030\005 \001(\003\022\022\n\nref_height" +
-+      "\030\014 \001(\003\022" +
+      "\030\014 \001(\003\022" +
       "3\n\021transaction_input\030\006 \003(\0132\030.wallet.Tran",
       "sactionInput\0225\n\022transaction_output\030\007 \003(\013" +
       "2\031.wallet.TransactionOutput\022\022\n\nblock_has" +
