@@ -86,7 +86,7 @@ public class Transaction extends ChildMessage implements Serializable {
     public static BigDecimal getDemurrage(int old_height, int new_height, BigDecimal value) {
         BigDecimal fee;
 
-        fee = new BigDecimal(0.99999904632568359375); // 1 - 2^(-20)
+        fee = new BigDecimal(0.999996185); // 1 - (1/DEMURRAGE_RATE from main.h)
         fee = fee.pow(new_height-old_height);
         fee = fee.multiply(value);
         fee = value.subtract(fee);
@@ -95,10 +95,10 @@ public class Transaction extends ChildMessage implements Serializable {
     }
     
     /** Calculate demurrage in satoshi **/
-    public static BigInteger getDemurrageInSatoshi(int old_height, int new_height, BigDecimal value) {
-        BigInteger fee;
-
-        fee = getDemurrage(old_height, new_height, value).setScale(8, BigDecimal.ROUND_HALF_UP).movePointRight(8).toBigIntegerExact();
+    public static Coin getDemurrageInSatoshi(int old_height, int new_height, BigDecimal value) {
+        Coin fee;
+        Coin feeDemurrage = Coin.valueOf(1);
+        fee = feeDemurrage.multiply(getDemurrage(old_height, new_height, value).setScale(8, BigDecimal.ROUND_HALF_UP).movePointRight(8).longValue());
 
         return fee;    
     }
