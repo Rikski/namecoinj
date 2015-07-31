@@ -1217,17 +1217,17 @@ public class Wallet extends BaseTaggableObject implements Serializable, BlockCha
         }
     }
 
-   public BigInteger getTxValueAfterDemurrage(Transaction tx, int height) {
+   public Coin getTxValueAfterDemurrage(Transaction tx, int height) {
         int oldheight = (int)tx.getRefHeight();
-        BigInteger in_value = tx.getValueSentToMe(this);
-        BigDecimal in_dec_value = (new BigDecimal(in_value)).movePointLeft(8);
+        Coin in_value = tx.getValueSentToMe(this);
+        BigDecimal in_dec_value = (new BigDecimal(in_value.longVlue())).movePointLeft(8);
         
         return in_value.subtract(Transaction.getDemurrageInSatoshi(oldheight,height,in_dec_value));
     }
     
-    public BigInteger getBalanceAfterDemurrage() {
+    public Coin getBalanceAfterDemurrage() {
         int height = getLastBlockSeenHeight();
-        BigInteger value = BigInteger.ZERO;
+        Coin value = Coin.ZERO;
         
         for (Transaction tx : unspent.values()) value = value.add(getTxValueAfterDemurrage(tx, height));
         for (Transaction tx : pending.values()) value = value.add(getTxValueAfterDemurrage(tx, height));
@@ -3403,11 +3403,12 @@ public class Wallet extends BaseTaggableObject implements Serializable, BlockCha
             req.tx.setRefHeight(height);
 
             // Calculate the demurrage fee
-            BigInteger fee = BigInteger.ZERO;
+            Coin fee = Coin.ZERO;
       
             for (Transaction tx : unspent.values()) { 
                 int oldheight = (int)tx.getRefHeight();
-                BigDecimal val = (new BigDecimal(tx.getValueSentToMe(this))).movePointLeft(8);
+                Coin demurrage_fee = tx.getValueSentToMe(this);
+                BigDecimal val = (new BigDecimal(demurrage_fee.longValue())).movePointLeft(8);
                 fee = fee.add(Transaction.getDemurrageInSatoshi(oldheight-2,height,val));
             }  
             Transaction.REFERENCE_DEFAULT_MIN_TX_FEE = fee;
