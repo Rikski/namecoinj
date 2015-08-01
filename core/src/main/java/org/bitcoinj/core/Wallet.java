@@ -1220,7 +1220,7 @@ public class Wallet extends BaseTaggableObject implements Serializable, BlockCha
    public Coin getTxValueAfterDemurrage(Transaction tx, int height) {
         int oldheight = (int)tx.getRefHeight();
         Coin in_value = tx.getValueSentToMe(this);
-        BigDecimal in_dec_value = (new BigDecimal(in_value.longVlue())).movePointLeft(8);
+        BigDecimal in_dec_value = (new BigDecimal(in_value.longValue())).movePointLeft(8);
         
         return in_value.subtract(Transaction.getDemurrageInSatoshi(oldheight,height,in_dec_value));
     }
