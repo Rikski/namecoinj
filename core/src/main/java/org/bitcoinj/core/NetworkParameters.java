@@ -116,7 +116,7 @@ public abstract class NetworkParameters implements Serializable {
             //Adding Worldleadcurrency genesisblock
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(25453671561), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(25453671561L), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("5029d180e0c5ed798d877b1ada99772986c1422ca932c41b2d04000000000000"));
@@ -190,7 +190,7 @@ public abstract class NetworkParameters implements Serializable {
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("85e54144c4020a65fa0a8fdbac8bba75dbc2fd00"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(49603174604), scriptPubKeyBytes.toByteArray())); 
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(49603174604L), scriptPubKeyBytes.toByteArray())); 
 
         } catch (Exception e) {
             // Cannot happen.
