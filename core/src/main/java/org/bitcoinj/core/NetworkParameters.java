@@ -116,13 +116,13 @@ public abstract class NetworkParameters implements Serializable {
             //Adding Worldleadcurrency genesisblock
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("254.53671561"), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(25453671561), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("5029d180e0c5ed798d877b1ada99772986c1422ca932c41b2d04000000000000"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_DROP);
             Script.writeBytes(scriptPubKeyBytes,new byte[] {(byte) 0}); 
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(1), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("202020"));
@@ -134,7 +134,7 @@ public abstract class NetworkParameters implements Serializable {
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("0ef0f9d19a653023554146a866238b8822bc84df"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(1), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("2020202020202020"));
@@ -146,7 +146,7 @@ public abstract class NetworkParameters implements Serializable {
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("c26be5ec809aa4bf6b30aa89823cff7cedc3679a"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(1), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("202020202020"));
@@ -158,7 +158,7 @@ public abstract class NetworkParameters implements Serializable {
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("2939acd60037281a708eb11e4e9eda452c029eca"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(1), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("20202020202020202020202020"));
@@ -170,7 +170,7 @@ public abstract class NetworkParameters implements Serializable {
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("f9ca5caab4bda4dc28b5556aa79a2eec0447f0bf"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(1), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("20202020202020202020202020"));
@@ -182,7 +182,7 @@ public abstract class NetworkParameters implements Serializable {
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("08f320cbb41a1ae25b794f6175f96080681989f3"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("0.00000001"), scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(1), scriptPubKeyBytes.toByteArray()));
 
             scriptPubKeyBytes.reset();
             scriptPubKeyBytes.write(ScriptOpCodes.OP_DUP);
@@ -190,7 +190,7 @@ public abstract class NetworkParameters implements Serializable {
             Script.writeBytes(scriptPubKeyBytes, Hex.decode("85e54144c4020a65fa0a8fdbac8bba75dbc2fd00"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_EQUALVERIFY);
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, Utils.toNanoCoins("496.03174604"), scriptPubKeyBytes.toByteArray())); 
+            t.addOutput(new TransactionOutput(n, t, SATOSHI.multiply(49603174604), scriptPubKeyBytes.toByteArray())); 
 
         } catch (Exception e) {
             // Cannot happen.
