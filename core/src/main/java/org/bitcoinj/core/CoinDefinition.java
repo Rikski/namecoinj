@@ -59,7 +59,7 @@ public class CoinDefinition {
     public static boolean checkpointFileSupport = true;
     public static int checkpointDaysBack = 21;
 
-    public static final int TARGET_TIMESPAN = (int)(128 * 60);  // ~ 1 day per difficulty cycle, on average.
+    public static final int TARGET_TIMESPAN = (int)(128 * 10 * 60);  // ~ 1 day per difficulty cycle, on average.
     public static final int TARGET_SPACING = (int)(10 * 60);  // 10 minutes per block.
     public static final int INTERVAL = TARGET_TIMESPAN / TARGET_SPACING;  //
 
