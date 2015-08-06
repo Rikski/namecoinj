@@ -867,7 +867,7 @@ public abstract class AbstractBlockChain {
         long now = System.currentTimeMillis();
         StoredBlock cursor = blockStore.get(prev.getHash());
         int blocksToGoBack = params.getInterval() - 1;
-        if(storedPrev.getHeight() >= CoinDefinition.getFullRetargetStartBlock() && ((storedPrev.getHeight()+1) > params.getInterval()))
+        ifif(storedPrev.getHeight()+1 != params.getInterval())
             blocksToGoBack = params.getInterval();
         for (int i = 0; i < blocksToGoBack; i++) {
             if (cursor == null) {
