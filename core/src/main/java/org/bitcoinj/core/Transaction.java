@@ -610,8 +610,10 @@ public class Transaction extends ChildMessage implements Serializable {
         }
         lockTime = readUint32();
         optimalEncodingMessageSize += 4;
-        refHeight = readUint32();
-        optimalEncodingMessageSize += 4 + 4;
+        if(version==2) {
+            refHeight = readUint32();
+            optimalEncodingMessageSize += 4 + 4;
+        }
         length = cursor - offset;
     }
 
