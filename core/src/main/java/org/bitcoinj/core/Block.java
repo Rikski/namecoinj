@@ -635,6 +635,8 @@ public class Block extends Message {
         block.difficultyTarget = difficultyTarget;
         block.transactions = null;
         block.hash = getHash().duplicate();
+        if(mmBlock!=null)
+            block.mmBlock = mmBlock.cloneAsHeader(block);
         return block;
     }
 
