@@ -612,7 +612,7 @@ public class Transaction extends ChildMessage implements Serializable {
         optimalEncodingMessageSize += 4;
         if(version==2) {
             refHeight = readUint32();
-            optimalEncodingMessageSize += 4 + 4;
+            optimalEncodingMessageSize += 4;
         }
         length = cursor - offset;
     }
