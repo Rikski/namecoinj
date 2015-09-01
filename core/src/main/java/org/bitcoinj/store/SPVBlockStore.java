@@ -47,7 +47,7 @@ public class SPVBlockStore implements BlockStore {
     private static final Logger log = LoggerFactory.getLogger(SPVBlockStore.class);
 
     /** The default number of headers that will be stored in the ring buffer. */
-    public static final int DEFAULT_NUM_HEADERS = 5000;
+    public static final int DEFAULT_NUM_HEADERS = 1000;
     public static final String HEADER_MAGIC = "SPVB";
 
     protected volatile MappedByteBuffer buffer;
@@ -66,7 +66,7 @@ public class SPVBlockStore implements BlockStore {
     protected LinkedHashMap<Sha256Hash, StoredBlock> blockCache = new LinkedHashMap<Sha256Hash, StoredBlock>() {
         @Override
         protected boolean removeEldestEntry(Map.Entry<Sha256Hash, StoredBlock> entry) {
-            return size() > 2050;  // Slightly more than the difficulty transition period.
+            return size() > 550;  // Close to the fourth difficulty checkpoint.
         }
     };
     // Use a separate cache to track get() misses. This is to efficiently handle the case of an unconnected block
