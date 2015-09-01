@@ -133,12 +133,6 @@ public class BlockMergeMined {
     }
     /** Returns true if the hash of the block is OK (lower than difficulty target). */
 
-    public BlockMergeMined cloneAsHeader(Block mainBlock){
-        BlockMergeMined bmm = new BlockMergeMined(this.params, null, 0, mainBlock);
-        bmm.payload = this.payload;
-        return bmm;
-    }
-
     protected boolean checkProofOfWork(boolean throwException) throws VerificationException {
         if(GetChainID() != MERGED_MINE_CHAIN_ID)
         {
