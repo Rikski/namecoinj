@@ -32,7 +32,7 @@ public class CoinDefinition {
     public static final CoinPrecision coinPrecision = CoinPrecision.Coins;
 
 
-    public static final String BLOCKEXPLORER_BASE_URL_PROD = "http://109.73.173.119:81";    //blockr.io
+    public static final String BLOCKEXPLORER_BASE_URL_PROD = "http://109.73.173.119:81/";    //blockr.io
     public static final String BLOCKEXPLORER_ADDRESS_PATH = "address/";             //blockr.io path
     public static final String BLOCKEXPLORER_TRANSACTION_PATH = "tx/";              //blockr.io path
     public static final String BLOCKEXPLORER_BLOCK_PATH = "block/";                 //blockr.io path
